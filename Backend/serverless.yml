@@ -1,0 +1,88 @@
+# "org" ensures this Service is used with the correct Serverless Framework Access Key.
+org: almerosen
+# "service" is the name of this project. This will also be added to your AWS resource names.
+service: backend
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  region: eu-north-1
+  environment:
+    JWT_SECRET_KEY: secret_key
+  iam:
+    role: arn:aws:iam::235494790392:role/lecture-role
+
+functions:
+  signup:
+    handler: functions/auth/signup/index.handler
+    events:
+      - httpApi:
+          path: /signup
+          method: post
+
+  login:
+    handler: functions/auth/login/index.handler
+    events:
+      - httpApi:
+          path: /login
+          method: post
+
+  createNewCredentials:
+    handler: functions/credentials/createNewCredentials/index.handler
+    events:
+      - httpApi:
+          path: /credentials
+          method: post
+
+  getCredentials:
+    handler: functions/credentials/getCredentials/index.handler
+    events:
+      - httpApi:
+          path: /credentials
+          method: get
+
+  updateCredentials:
+    handler: functions/credentials/updateCredentials/index.handler
+    events:
+      - httpApi:
+          path: /credentials
+          method: put
+
+resources:
+  Resources:
+    UsersTable:
+      Type: AWS::DynamoDB:Table
+      Properties:
+        TableName: LCKD_Pwd_Gen_UsersTable
+        AttributeDefinitions:
+          - AttributeName: userId
+            AttributeType: S
+          - AttributeName: username
+            AttributeType: S
+        KeySchema:
+          - AttributeName: userId
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
+        GlobalSecondaryIndexes:
+          - IndexName: UsernameIndex # to query by username
+            KeySchema:
+              - AttributeName: username
+                KeyType: HASH
+            Projection:
+              ProjectionType: ALL
+
+    PasswordsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: LCKD_Pwd_Gen__PasswordsTable
+        AttributeDefinitions:
+          - AttributeName: userId
+            AttributeType: S
+          - AttributeName: website
+            AttributeType: S
+        KeySchema:
+          - AttributeName: userId
+            KeyType: HASH
+          - AttributeName: website
+            KeyType: RANGE
+        BillingMode: PAY_PER_REQUEST
