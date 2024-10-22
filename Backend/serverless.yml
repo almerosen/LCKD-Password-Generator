@@ -51,7 +51,7 @@ functions:
 resources:
   Resources:
     UsersTable:
-      Type: AWS::DynamoDB:Table
+      Type: AWS::DynamoDB::Table
       Properties:
         TableName: LCKD_Pwd_Gen_UsersTable
         AttributeDefinitions:
