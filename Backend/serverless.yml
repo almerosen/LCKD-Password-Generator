@@ -6,6 +6,17 @@ service: backend
 provider:
   name: aws
   runtime: nodejs20.x
+  httpApi:
+    cors:
+      allowedOrigins:
+        - http://localhost:5173 # Specify the allowed origin (you can add more if needed)
+      allowedHeaders:
+        - Content-Type
+      allowedMethods:
+        - GET
+        - POST
+        - PUT
+        - DELETE
   region: eu-north-1
   environment:
     JWT_SECRET_KEY: secret_key

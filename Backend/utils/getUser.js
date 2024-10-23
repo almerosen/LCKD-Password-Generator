@@ -1,9 +1,9 @@
 import { db } from "../services/db.js"
 
-const getUser = async (username) => {
+export const getUser = async (username) => {
     const {Items} = await db.query({
         TableName: "LCKD_Pwd_Gen_UsersTable",
-        IndexName: "usernameIndex",
+        IndexName: "UsernameIndex",
         KeyConditionExpression: "username = :username",
         ExpressionAttributeValues: {
             ":username": username.toLowerCase()

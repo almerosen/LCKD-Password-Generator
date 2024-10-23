@@ -21,7 +21,7 @@ export const handler = async (event) => {
             return sendError(400, { message: "Username already exists" })
         }
 
-        const encryptedPassword = CryptoJS.AES.encrypt(password, process.env.SECRET_KEY).toString()
+        const encryptedPassword = CryptoJS.AES.encrypt(password, process.env.JWT_SECRET_KEY).toString()
 
         const user = {
             userId: uuidv4(),
