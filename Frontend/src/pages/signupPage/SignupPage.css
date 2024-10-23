@@ -1,0 +1,108 @@
+.signupPage-container {
+    width: 375px;
+    height: 812px;
+    background-color: #15085F;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    padding: 30px;
+}
+
+.login-container {
+    color: red;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    border: 1px solid red;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 215px;
+    position: absolute;
+    top: 25%
+}
+
+.img-container {
+    width: 78px;
+    height: 78px;
+    margin-bottom: 10px;
+}
+
+.img {
+    width: 100%;
+}
+
+.title {
+    font-family: sans-serif;
+    color: white;
+    font-size: 44px;
+    letter-spacing: 2px;
+    padding: 10px;
+}
+
+.text {
+    font-family: sans-serif;
+    color: #FFBD21;
+    font-size: 20px;
+    text-align: center;
+    letter-spacing: 2px;
+    line-height: 150%;
+}
+
+form {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    /* gap: 20px; */
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    height: 105px;
+}
+
+label {
+    color: white;
+    /* background-color: #FFBD21; */
+}
+
+.input-field {
+    background-color: transparent;
+    border: 1px solid #FFBD21;
+    font-size: 20px;
+    padding: 15px;
+    color: #FFBD21;
+    border-radius: 5px;
+}
+
+.text-danger {
+    color: red;
+}
+
+.errormessage {
+    position: absolute;
+    top: 55%;
+}
+
+.submit-button {
+    height: 62px;
+    color: #15085F;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 5px;
+    margin-top: 30px;
+    letter-spacing: 3px;
+    cursor: pointer;
+}
+
