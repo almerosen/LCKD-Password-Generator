@@ -2,8 +2,8 @@ name: Deploy Frontend
 
 on:
   push:
-    paths:
-      - "frontend/**"
+    # paths:
+    #   - "frontend/**"
     branches:
       - main
 
