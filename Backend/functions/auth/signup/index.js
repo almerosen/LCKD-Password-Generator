@@ -34,7 +34,7 @@ export const handler = async (event) => {
             Item: user
         })
 
-        return sendResponse(200, { message: "User created" })
+        return sendResponse(200, { success: true })
 
     } catch (error) {
         console.error("Error:", error)

@@ -30,7 +30,7 @@ export const handler = async (event) => {
         // Generate token
         const token = jwt.sign({ userId: user.userId, username: user.username }, process.env.JWT_SECRET_KEY, { expiresIn: "1h" })
         
-        return sendResponse(200, { message: "Login successful", token })
+        return sendResponse(200, { success: true, token })
 
     } catch (error) {
         console.error("Error:", error)
