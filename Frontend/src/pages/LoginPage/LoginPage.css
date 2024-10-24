@@ -1,4 +1,4 @@
-.signupPage-container {
+.loginPage-container {
     width: 375px;
     height: 812px;
     background-color: #15085F;
@@ -8,7 +8,7 @@
     padding: 30px;
 }
 
-.login-container {
+.signUp-container {
     color: red;
     position: absolute;
     top: 20px;
@@ -19,7 +19,7 @@
     cursor: pointer;
 }
 
-.login-link {
+.signup-link {
     color: red;
     text-decoration: none;
 }

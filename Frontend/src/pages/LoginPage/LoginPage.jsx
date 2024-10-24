@@ -1,60 +1,45 @@
-import "./SignupPage.css"
-import logo from "../../assets/logo.svg"
+import "./LoginPage.css"
 import axios from 'axios';
 import { useForm } from "react-hook-form";
+import logo from "../../assets/logo.svg"
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
 
-export const SignupPage = () => {
+export const LoginPage = () => {
     const baseUrl = import.meta.env.VITE_BASE_URL
+    console.log(import.meta.env)
     const [errorMessage, setErrorMessage] = useState("")
 
     const { register, handleSubmit, formState: { errors }} = useForm()
 
-    const handleRegistration = async (data) => {
+    const handleLogin = async (data) => {
         console.log(data)
+
         try {
-            const response = await axios.post(`${baseUrl}/signup`, {
+            const response = await axios.post(`${baseUrl}/login`, {
                 username: data.username,
                 password: data.password
             })
 
             console.log("Response data:", response.data)
 
-            if (response.data) {
-                alert("User created")
+            if (response.data && response.data.token) {
+                localStorage.setItem("token", response.data.token)
+
+                alert("Login success")
             }
 
         } catch (error) {
-            console.error("Error register", error.response.data)
-            if (error.response) {
-                setErrorMessage(error.response.data.message)
-            }
-        } 
-    }
-
-    const registerOptions = {
-        name: { 
-            required: "Username is required",
-            minLength: {
-                value: 2,
-                message: "Username must have at least 2 characters"
-            }
-        },
-        password: {
-            required: "Password is required",
-            minLength: {
-                value: 6,
-                message: "Password must have at least 6 characters"
-            }
+            console.error("Error:", error.response.data)
+            setErrorMessage(error.response.data.message)
         }
     }
 
     return (
-        <div className="signupPage-container">
-            <div className="login-container">
-                <Link to={"/login"} className="login-link">Login</Link>
+        <div className="loginPage-container">
+            <div className="signUp-container">
+                <Link to={"/signup"} className="signup-link">Sign up</Link>
             </div>
 
             <section className="logo-container">
@@ -67,10 +52,10 @@ export const SignupPage = () => {
 
             {errorMessage && <div className="text-danger errormessage" >{errorMessage}</div>}
 
-            <form onSubmit={handleSubmit(handleRegistration)}>
+            <form onSubmit={handleSubmit(handleLogin)}>
                 <div className="form-group">
                     <label>Username</label>
-                    <input {...register("username", registerOptions.name )} className="input-field" />  
+                    <input {...register("username", {required: "Username is required"} )} className="input-field" />  
                     <small className="text-danger">
                         {errors?.username && errors.username.message}
                     </small>
@@ -79,14 +64,14 @@ export const SignupPage = () => {
                     <label>Password</label>
                     <input 
                         type="password" 
-                        {...register("password", registerOptions.password )} 
+                        {...register("password", {required: "Password is required"} )} 
                         className="input-field"
                     />
                     <small className="text-danger">
                         {errors?.password && errors.password.message}
                     </small>
                 </div>
-                <button className="submit-button">SIGN UP</button>   
+                <button className="submit-button">LET ME IN</button>   
             </form>            
         </div>
     )
