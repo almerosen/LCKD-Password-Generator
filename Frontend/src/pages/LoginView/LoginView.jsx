@@ -39,7 +39,7 @@ export const LoginPage = () => {
     return (
         <div className="loginPage-container">
             <div className="signUp-container">
-                <Link to={"/signup"} className="signup-link">Sign up</Link>
+                <Link to={"/"} className="signup-link">Sign up</Link>
             </div>
 
             <section className="logo-container">
