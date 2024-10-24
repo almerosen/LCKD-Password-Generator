@@ -1,0 +1,33 @@
+p, h1 {
+    font-family: sans-serif;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+.newLCKDPage-container {
+    width: 375px;
+    height: 812px;
+    background-color: #15085F;
+    /* display: flex;
+    justify-content: center;
+    position: relative;
+    padding: 30px; */
+}
+
+header {
+    background-color: #0d024d;
+    width: 100%;
+    height: 80px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.title-text {
+    text-align: center;
+    margin-top: 5rem;
+    line-height: 2rem;
+}
