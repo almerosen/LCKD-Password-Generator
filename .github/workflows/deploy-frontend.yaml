@@ -8,7 +8,7 @@ on:
       - "Frontend/**"
 
 jobs:
-  build-and-deploy:
+  build-and-deploy-frontend:
     runs-on: ubuntu-latest
 
     steps:

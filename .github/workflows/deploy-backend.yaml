@@ -8,7 +8,7 @@ on:
       - "Backend/**"
 
 jobs:
-  build-and-deploy:
+  build-and-deploy-backend:
     runs-on: ubuntu-latest
 
     steps:
@@ -24,6 +24,9 @@ jobs:
         run: |
           cd Backend
           npm install
+
+      - name: Install Serverless framework
+        run: npm install -g serverless
 
       - name: Deploy backend
         run: |
