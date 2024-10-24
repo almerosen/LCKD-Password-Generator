@@ -22,7 +22,7 @@ jobs:
 
       - name: Build frontend
         run: |
-          cd frontend
+          cd Frontend
           npm run build
 
       - name: Deploy frontend to s3
