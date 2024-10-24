@@ -5,7 +5,7 @@ import { LoginPage } from "../pages/LoginView/LoginView"
 
 export const router = createBrowserRouter([
     {
-        path: "/signup",
+        path: "/",
         element: <SignupPage />
     },
     {
