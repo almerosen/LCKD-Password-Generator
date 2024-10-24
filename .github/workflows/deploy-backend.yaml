@@ -1,11 +1,11 @@
-name: Deploy Frontend
+name: Deploy Backend
 
 on:
   push:
-    paths:
-      - "Frontend/**"
     branches:
       - main
+    paths:
+      - "Backend/**"
 
 jobs:
   build-and-deploy:
@@ -15,23 +15,23 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Install frontend dependencies
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20"
+
+      - name: Install backend dependencies
         run: |
-          cd Frontend
+          cd Backend
           npm install
 
-      - name: Build frontend
+      - name: Deploy backend
         run: |
-          cd Frontend
-          npm run build
+          cd Backend
+          serverless deploy
 
-      - name: Deploy frontend to s3
-        uses: jakejarvis/s3-sync-action@master
-        with:
-          args: --delete --follow-symlinks
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
           AWS_REGION: "eu-north-1"
-          SOURCE_DIR: "Frontend/dist"
