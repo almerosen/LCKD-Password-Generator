@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Fontdiner+Swanky&family=PT+Mono&display=swap');
+
 p, h1 {
     font-family: sans-serif;
     color: white;
@@ -14,6 +16,7 @@ p, h1 {
     justify-content: center;
     position: relative;
     padding: 30px; */
+    position: relative;
 }
 
 header {
@@ -30,4 +33,26 @@ header {
     text-align: center;
     margin-top: 5rem;
     line-height: 2rem;
+}
+
+.form-group {
+    display: flex;
+}
+
+.label-text {
+    color: gold;
+}
+
+.generatePassword-image {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%); 
+    cursor: pointer;
+}
+
+.input-field.genPassword {
+    text-align: center;
+    font-family: "PT Mono", monospace;
+    letter-spacing: 3px;
 }
