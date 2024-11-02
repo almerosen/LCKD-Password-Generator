@@ -10,6 +10,9 @@ import genPasImg from "../../assets/genPasImg.svg"
 import logo from "../../assets/logo.svg"
 
 export const NewLCKDPage = () => {
+    const baseUrl = import.meta.env.VITE_BASE_URL
+
+    const token = localStorage.getItem("token")
     const { register, handleSubmit, setValue, formState: { errors }} = useForm()
 
     const generatePassword = () => {
@@ -19,14 +22,28 @@ export const NewLCKDPage = () => {
         })
         setValue("securePassword", newPassword)
     }
-    // const password = GeneratePassword({
-    //     length: 10,
-    //     symbols: true
-    // })
-    // console.log("Password", password)
 
-    const handleSubmitCredentials = (data) => {
+    const handleSubmitCredentials = async (data) => {
         console.log(data)
+
+        try {
+            const response = await axios.post(`${baseUrl}/credentials`, {
+                address: data.address,
+                username: data.username,
+                securePassword: data.securePassword
+            },
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            }
+            )
+            console.log("Response data:", response.data)
+
+        } catch (error) {
+            console.error("error:", error)
+        }
+
     }
 
     return (
@@ -42,7 +59,7 @@ export const NewLCKDPage = () => {
                 <div className="form-group">
                     <label className="label-text">www</label>
                     <input 
-                        {...register("www", {required: "Adress is required"})}
+                        {...register("address", {required: "Adress is required"})}
                         className="input-field"
                     />
                     <small className="text-danger">
@@ -77,7 +94,7 @@ export const NewLCKDPage = () => {
             
 
                     <small>
-                        {errors?.securepassword && errors.securepassword.message}
+                        {errors?.securePassword && errors.securepassword.message}
                     </small>
                 </div>
 

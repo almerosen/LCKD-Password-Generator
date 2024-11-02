@@ -4,12 +4,14 @@ import { useForm } from "react-hook-form";
 import logo from "../../assets/logo.svg"
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 export const LoginPage = () => {
     const baseUrl = import.meta.env.VITE_BASE_URL
     console.log(import.meta.env)
     const [errorMessage, setErrorMessage] = useState("")
+    const navigate = useNavigate()
 
     const { register, handleSubmit, formState: { errors }} = useForm()
 
@@ -27,7 +29,7 @@ export const LoginPage = () => {
             if (response.data && response.data.token) {
                 localStorage.setItem("token", response.data.token)
 
-                alert("Login success")
+                navigate("/newLCKD")
             }
 
         } catch (error) {
