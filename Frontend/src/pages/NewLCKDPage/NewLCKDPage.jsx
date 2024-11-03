@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import generator from 'generate-password'; 
 import { GeneratePassword } from "js-generate-password";
 import genPasImg from "../../assets/genPasImg.svg"
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -11,6 +12,7 @@ import logo from "../../assets/logo.svg"
 
 export const NewLCKDPage = () => {
     const baseUrl = import.meta.env.VITE_BASE_URL
+    const navigate = useNavigate()
 
     const token = localStorage.getItem("token")
     const { register, handleSubmit, setValue, formState: { errors }} = useForm()
@@ -40,9 +42,13 @@ export const NewLCKDPage = () => {
             )
             console.log("Response data:", response.data)
 
+            navigate("/passwords")
+
         } catch (error) {
             console.error("error:", error)
         }
+
+
 
     }
 

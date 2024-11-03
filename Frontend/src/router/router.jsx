@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom"
 import { SignupPage } from "../../src/pages/signupPage/SignupPage"
 import { NewLCKDPage } from "../pages/NewLCKDPage/NewLCKDPage"
 import { LoginPage } from "../pages/LoginView/LoginView"
+import { StoredPasswordsPage } from "../pages/StoredPasswordsPage/StoredPasswordsPage"
 
 export const router = createBrowserRouter([
     {
@@ -15,6 +16,10 @@ export const router = createBrowserRouter([
     {
         path: "/newLCKD",
         element: < NewLCKDPage/>
+    },
+    {
+        path: "/passwords",
+        element: < StoredPasswordsPage />
     }
 ])
 
