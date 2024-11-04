@@ -55,7 +55,7 @@ export const StoredPasswordsPage = () => {
             </header>
 
             <main>
-                <div className="storedPasswords" style={{padding: "10px", borderRadius: "5px"}}>
+                <div className="storedPasswords">
                     {loading ? (
                         <p>Loading...</p>
                     ) : (

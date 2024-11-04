@@ -9,9 +9,11 @@ provider:
   httpApi:
     cors:
       allowedOrigins:
-        - http://localhost:5173 # Specify the allowed origin (you can add more if needed)
+        # - http://localhost:5173 # Specify the allowed origin (you can add more if needed)
+        - "*"
       allowedHeaders:
-        - Content-Type
+        # - Content-Type
+        - "*"
       allowedMethods:
         - GET
         - POST
@@ -20,6 +22,7 @@ provider:
   region: eu-north-1
   environment:
     JWT_SECRET_KEY: secret_key
+    ENCRYPT_SECRET_KEY: secret_encryption_key
   iam:
     role: arn:aws:iam::235494790392:role/lecture-role
 
