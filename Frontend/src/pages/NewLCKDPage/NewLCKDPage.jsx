@@ -69,7 +69,7 @@ export const NewLCKDPage = () => {
                         className="input-field"
                     />
                     <small className="text-danger">
-                        {errors.www && errors.www.message}
+                        {errors.address && errors.address.message}
                     </small>
                 </div>
 
@@ -97,10 +97,8 @@ export const NewLCKDPage = () => {
                         onClick={generatePassword}
                         className="generatePassword-image"
                     />
-            
-
-                    <small>
-                        {errors?.securePassword && errors.securepassword.message}
+                    <small className="text-danger">
+                        {errors?.securePassword && errors.securePassword.message}
                     </small>
                 </div>
 

@@ -29,7 +29,7 @@ export const LoginPage = () => {
             if (response.data && response.data.token) {
                 localStorage.setItem("token", response.data.token)
 
-                navigate("/newLCKD")
+                navigate("/passwords")
             }
 
         } catch (error) {

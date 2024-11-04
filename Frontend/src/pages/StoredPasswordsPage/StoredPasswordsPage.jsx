@@ -1,5 +1,6 @@
 import "./StoredPasswordsPage.css"
 import logo from "../../assets/logo.svg"
+import { useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { CredentialsComponent } from "../../components/credentialsComponent/credentialsComponent"
 
@@ -7,6 +8,9 @@ import { CredentialsComponent } from "../../components/credentialsComponent/cred
 export const StoredPasswordsPage = () => {
     const token = localStorage.getItem("token")
     const baseUrl = import.meta.env.VITE_BASE_URL
+    const navigate = useNavigate()
+    const [loading, setIsLoading] = useState(true)
+    const [activeIndex, setActiveIndex] = useState(null)
     const [credentials, setCredentials] = useState([])
     const [selectedPassword, setSelectedPassword] = useState(null)
 
@@ -29,6 +33,8 @@ export const StoredPasswordsPage = () => {
             setCredentials(data)
         } catch (error) {
             console.error(error.message)
+        } finally {
+            setIsLoading(false)
         }
     }
 
@@ -36,8 +42,9 @@ export const StoredPasswordsPage = () => {
         getCredentials()
     }, [])
 
-    const handleShowPassword = (password) => {
+    const handleShowPassword = (password, index) => {
         setSelectedPassword(password)
+        setActiveIndex(index)
     }
 
     return (
@@ -49,13 +56,21 @@ export const StoredPasswordsPage = () => {
 
             <main>
                 <div className="storedPasswords" style={{padding: "10px", borderRadius: "5px"}}>
-                    <ul>
-                        {credentials.map((cred) => (
-                            <li key={cred.id}>
-                                <CredentialsComponent item={cred} onShowPassword={handleShowPassword}/>
-                            </li>
-                        ))}
-                    </ul>
+                    {loading ? (
+                        <p>Loading...</p>
+                    ) : (
+                        <ul>
+                            {credentials.map((cred, index) => (
+                                <li key={index}>
+                                    <CredentialsComponent 
+                                        item={cred} 
+                                        onShowPassword={() => handleShowPassword(cred.securePassword, index)}
+                                        isActive={activeIndex === index}
+                                    />
+                                </li>
+                            ))}
+                        </ul>
+                    )}
                 </div>
             </main>
 
@@ -67,8 +82,10 @@ export const StoredPasswordsPage = () => {
                     </div>
                 )}
             </section>
-            
 
+            <footer>
+                <button className="new-button" onClick={() => navigate("/newLCKD")}>new lckd</button>
+            </footer>
 
         </div>
     )
