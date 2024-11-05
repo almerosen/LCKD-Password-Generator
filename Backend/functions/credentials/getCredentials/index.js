@@ -25,7 +25,7 @@ const getCredentials = async (event) => {
         })
 
         if (Items.length === 0) {
-            return sendError(200, { message: "User does not have any credentials stored" })
+            return sendError(200, { success: false, message: "User does not have any credentials stored" })
         }
 
         const decryptedItems = Items.map(item => ({

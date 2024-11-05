@@ -9,16 +9,15 @@ provider:
   httpApi:
     cors:
       allowedOrigins:
-        # - http://localhost:5173 # Specify the allowed origin (you can add more if needed)
         - "*"
       allowedHeaders:
-        # - Content-Type
         - "*"
       allowedMethods:
+        - OPTIONS
         - GET
         - POST
         - PUT
-        - DELETE
+      allowCredentials: false
   region: eu-north-1
   environment:
     JWT_SECRET_KEY: secret_key
@@ -55,11 +54,18 @@ functions:
           path: /credentials
           method: get
 
+  getCredentialByUserIDAndWebsite:
+    handler: functions/credentials/getCredentialByUserIDAndWebsite/index.handler
+    events:
+      - httpApi:
+          path: /credentials/{website}
+          method: get
+
   updateCredentials:
     handler: functions/credentials/updateCredentials/index.handler
     events:
       - httpApi:
-          path: /credentials
+          path: /credentials/{website}
           method: put
 
 resources:

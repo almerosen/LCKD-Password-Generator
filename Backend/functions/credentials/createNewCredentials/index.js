@@ -3,6 +3,8 @@ import { db } from "../../../services/db.js"
 import { sendError, sendResponse } from "../../../utils/responses.js"
 import CryptoJS from 'crypto-js';
 import middy from '@middy/core'
+import { v4 as uuidv4 } from 'uuid';
+
 
  const createNewCredentials = async (event) => {
     console.log(event)
@@ -12,9 +14,9 @@ import middy from '@middy/core'
     }
 
     try {
-        const { address, username, securePassword } = JSON.parse(event.body)
+        const { website, username, securePassword } = JSON.parse(event.body)
 
-        if (!address || !username || !securePassword) {
+        if (!website || !username || !securePassword) {
             return sendError(400, { success: false, message: "All fields required" })
         }
 
@@ -26,7 +28,7 @@ import middy from '@middy/core'
             TableName: "LCKD_Pwd_Gen__PasswordsTable",
             Item: {
                 userId,
-                website: address,
+                website,
                 username,
                 securePassword: encryptedPassword
             }
