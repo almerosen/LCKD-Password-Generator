@@ -1,0 +1,40 @@
+.editPage-wrapper {
+    width: 375px;
+    height: 812px;
+    background-color: #15085F;
+    /* display: flex;
+    justify-content: center;
+    position: relative;
+    padding: 30px; */
+    position: relative;
+}
+
+/* .form-section {
+    padding: 30px;
+} */
+
+form {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    /* gap: 20px; */
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    height: 105px;
+}
+
+/* input {
+    background-color: transparent;
+    border: 1px solid #FFBD21;
+    font-size: 20px;
+    padding: 15px;
+    color: #FFBD21;
+    border-radius: 5px;
+} */

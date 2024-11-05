@@ -3,7 +3,7 @@ import eye from "../../assets/eye.svg"
 import edit from "../../assets/edit.svg"
 import eyeActive from "../../assets/eye-outline.svg"
 
-export const CredentialsComponent = ({item, onShowPassword, isActive}) => {
+export const CredentialsComponent = ({item, onShowPassword, isActive, onEdit}) => {
     return (
         <div className={`container ${isActive ? "active" : ""}`}>
             <div className="website-container">
@@ -12,7 +12,7 @@ export const CredentialsComponent = ({item, onShowPassword, isActive}) => {
            
          
             <div className={`eye-container ${isActive ? "active" : ""}`}>
-                {isActive && <img src={edit} /> }
+                {isActive && <img src={edit}  onClick={() => onEdit(item.website)}/> }
                 
                 {isActive ? (
                     <img src={eyeActive} onClick={() => onShowPassword(item.securePassword)} />

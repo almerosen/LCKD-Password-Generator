@@ -30,7 +30,7 @@ export const NewLCKDPage = () => {
 
         try {
             const response = await axios.post(`${baseUrl}/credentials`, {
-                address: data.address,
+                website: data.website,
                 username: data.username,
                 securePassword: data.securePassword
             },
@@ -58,18 +58,18 @@ export const NewLCKDPage = () => {
                 <img src={logo} alt="logo" style={{height: "32px"}}/>
                 <p>LCKD</p>
             </header>
-
-            <h1 className="title-text">NEW SECURE CREDENTIALS</h1>
+            
+            <h1 className="title-text">new secure credentials</h1>
 
             <form onSubmit={handleSubmit(handleSubmitCredentials)}>
                 <div className="form-group">
                     <label className="label-text">www</label>
                     <input 
-                        {...register("address", {required: "Adress is required"})}
+                        {...register("website", {required: "Adress is required"})}
                         className="input-field"
                     />
                     <small className="text-danger">
-                        {errors.address && errors.address.message}
+                        {errors.website && errors.website.message}
                     </small>
                 </div>
 

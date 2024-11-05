@@ -30,7 +30,11 @@ export const StoredPasswordsPage = () => {
 
             const data = await response.json()
             console.log("Recieved data:", data)
-            setCredentials(data)
+            if (data && data.length > 0) {
+                setCredentials(data)
+            } else {
+                setCredentials([])
+            }
         } catch (error) {
             console.error(error.message)
         } finally {
@@ -47,6 +51,10 @@ export const StoredPasswordsPage = () => {
         setActiveIndex(index)
     }
 
+    const handleEdit = (website) => {
+        navigate(`/${website}/update`)
+    }
+
     return (
         <div className="storedPasswordsPage-container">
              <header>
@@ -59,17 +67,22 @@ export const StoredPasswordsPage = () => {
                     {loading ? (
                         <p>Loading...</p>
                     ) : (
-                        <ul>
-                            {credentials.map((cred, index) => (
-                                <li key={index}>
-                                    <CredentialsComponent 
-                                        item={cred} 
-                                        onShowPassword={() => handleShowPassword(cred.securePassword, index)}
-                                        isActive={activeIndex === index}
-                                    />
-                                </li>
-                            ))}
-                        </ul>
+                        credentials.length > 0 ? (
+                            <ul>
+                                {credentials.map((cred, index) => (
+                                    <li key={index}>
+                                        <CredentialsComponent 
+                                            item={cred} 
+                                            onShowPassword={() => handleShowPassword(cred.securePassword, index)}
+                                            onEdit={() => handleEdit(cred.website)}
+                                            isActive={activeIndex === index}
+                                        />
+                                    </li>
+                                ))}
+                            </ul>
+                        ) : (
+                            <p>No credentials stored. Please add some.</p>
+                        )
                     )}
                 </div>
             </main>

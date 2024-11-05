@@ -27,12 +27,17 @@ header {
     display: flex;
     align-items: center;
     gap: 10px;
+
+    .header-logo {
+        height: 32px;
+    }
 }
 
 .title-text {
     text-align: center;
     margin-top: 5rem;
     line-height: 2rem;
+    text-transform: uppercase;
 }
 
 .form-group {

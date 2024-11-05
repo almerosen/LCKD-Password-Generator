@@ -3,6 +3,7 @@ import { SignupPage } from "../../src/pages/signupPage/SignupPage"
 import { NewLCKDPage } from "../pages/NewLCKDPage/NewLCKDPage"
 import { LoginPage } from "../pages/LoginView/LoginView"
 import { StoredPasswordsPage } from "../pages/StoredPasswordsPage/StoredPasswordsPage"
+import { EditPage } from "../pages/EditPage/EditPage"
 
 export const router = createBrowserRouter([
     {
@@ -20,6 +21,10 @@ export const router = createBrowserRouter([
     {
         path: "/passwords",
         element: < StoredPasswordsPage />
+    },
+    {
+        path: "/:website/update",
+        element: < EditPage />
     }
 ])
 
