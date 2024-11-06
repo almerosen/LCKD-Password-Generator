@@ -3,8 +3,10 @@ import { Header } from "../../components/Header/Header"
 import { useEffect, useState } from "react"
 import { sendError } from "../../../../Backend/utils/responses"
 import { useParams } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 export const EditPage = () => {
+    const navigate = useNavigate()
     const { website } = useParams()
     const token = localStorage.getItem("token")
     const baseUrl = import.meta.env.VITE_BASE_URL
@@ -47,10 +49,36 @@ export const EditPage = () => {
         getCredential()
     }, [website])
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
         console.log("website:", websiteAddress)
         console.log("username:", username)
+        console.log("password:", password)
+
+        try {
+            const response = await fetch(`${baseUrl}/credentials/${websiteAddress}`, {
+                method: "PUT",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    username,
+                    password
+                })
+            })
+
+            if (!response.ok) {
+                throw new Error (`Response status: ${response.status}`)
+            }
+
+            const data = await response.json()
+            console.log("response data:", data)
+
+            navigate("/passwords")
+        } catch (error) {
+            console.error("Error:", error)
+        }
     }
 
     return (

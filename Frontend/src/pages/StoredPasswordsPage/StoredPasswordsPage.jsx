@@ -3,6 +3,7 @@ import logo from "../../assets/logo.svg"
 import { useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { CredentialsComponent } from "../../components/credentialsComponent/credentialsComponent"
+import { Header } from "../../components/Header/Header"
 
 
 export const StoredPasswordsPage = () => {
@@ -57,10 +58,12 @@ export const StoredPasswordsPage = () => {
 
     return (
         <div className="storedPasswordsPage-container">
-             <header>
+             {/* <header>
                 <img src={logo} alt="logo" style={{height: "32px"}}/>
                 <p>LCKD</p>
-            </header>
+            </header> */}
+            
+            < Header />
 
             <main>
                 <div className="storedPasswords">

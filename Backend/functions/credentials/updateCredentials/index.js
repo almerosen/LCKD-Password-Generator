@@ -1,12 +1,9 @@
 import { db } from "../../../services/db.js";
 import middy from "@middy/core";
-import CryptoJS from 'crypto-js';
 import { sendError, sendResponse } from "../../../utils/responses.js";
 import { verifyToken } from "../../../middleware/verifyToken.js";
+import { encryptPassword } from "../../../utils/encryptPassword.js";
 
-const encrypt = (password) => {
-    return CryptoJS.AES.encrypt(password, process.env.ENCRYPT_SECRET_KEY).toString();
-}
 
 const updateCredential = async (event) => {
     console.log(event) 
@@ -27,7 +24,7 @@ const updateCredential = async (event) => {
         }
 
         if (password) {
-            const encryptedPassword = encrypt(password)
+            const encryptedPassword = encryptPassword(password)
             updateExpression.push("securePassword = :securePassword")
             ExpressionAttributeValues[":securePassword"] = encryptedPassword
         }
@@ -48,8 +45,6 @@ const updateCredential = async (event) => {
         const updatedItem = updateItem.Attributes
 
         return sendResponse(200, { success: true, updatedItem })
-
-
 
     } catch (error) {
         console.error("Error:", error)

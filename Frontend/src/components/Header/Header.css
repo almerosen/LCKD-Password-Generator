@@ -5,9 +5,25 @@ header {
     padding: 20px;
     display: flex;
     align-items: center;
-    gap: 10px;
+    justify-content: space-between;
+    /* gap: 10px; */
 
-    .header-logo {
-        height: 32px;
+    .left-side {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        .header-logo {
+            height: 32px;
+        }
+    }
+
+    .right-side {
+        cursor: pointer;
+
+        .logout-text {
+            font-size: .9rem;
+        }
     }
 }
+

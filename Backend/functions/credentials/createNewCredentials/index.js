@@ -4,14 +4,11 @@ import { sendError, sendResponse } from "../../../utils/responses.js"
 import CryptoJS from 'crypto-js';
 import middy from '@middy/core'
 import { v4 as uuidv4 } from 'uuid';
+import { encryptPassword } from "../../../utils/encryptPassword.js";
 
 
  const createNewCredentials = async (event) => {
     console.log(event)
-
-    const encrypt = (text) => {
-        return CryptoJS.AES.encrypt(text, process.env.ENCRYPT_SECRET_KEY).toString()
-    }
 
     try {
         const { website, username, securePassword } = JSON.parse(event.body)
@@ -22,7 +19,7 @@ import { v4 as uuidv4 } from 'uuid';
 
         const { userId } = event.user
 
-        const encryptedPassword = encrypt(securePassword)
+        const encryptedPassword = encryptPassword(securePassword)
 
         await db.put({
             TableName: "LCKD_Pwd_Gen__PasswordsTable",
