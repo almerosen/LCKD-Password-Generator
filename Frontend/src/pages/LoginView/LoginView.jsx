@@ -5,6 +5,7 @@ import logo from "../../assets/logo.svg"
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { Button } from "../../components/Button/Button";
 
 
 export const LoginPage = () => {
@@ -73,7 +74,7 @@ export const LoginPage = () => {
                         {errors?.password && errors.password.message}
                     </small>
                 </div>
-                <button className="submit-button">LET ME IN</button>   
+                < Button buttonText={"LET ME IN"} />   
             </form>            
         </div>
     )

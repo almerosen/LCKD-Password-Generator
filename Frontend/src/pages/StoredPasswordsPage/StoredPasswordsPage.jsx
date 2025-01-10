@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { CredentialsComponent } from "../../components/credentialsComponent/credentialsComponent"
 import { Header } from "../../components/Header/Header"
+import { Button } from "../../components/Button/Button"
 
 
 export const StoredPasswordsPage = () => {
@@ -100,6 +101,7 @@ export const StoredPasswordsPage = () => {
             </section>
 
             <footer>
+                {/* < Button onClick={() => navigate("/newLCKD")} buttonText={"NEW LCKD"}/> */}
                 <button className="new-button" onClick={() => navigate("/newLCKD")}>new lckd</button>
             </footer>
 
